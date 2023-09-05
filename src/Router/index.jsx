@@ -51,12 +51,12 @@ import MardikaFindYourGroup from "@Pages/Mardika/FindYourGroup";
 import DewantaraMudaDashboard from "@Pages/DewantaraMuda/Dashboard";
 import DewantaraMudaCreateGroup from "@Pages/DewantaraMuda/CreateGroup";
 
-
 import CounselorDashboard from "@Pages/Counselor/Dashboard";
 import NotFound from "@Pages/NotFound";
 
 const index = ({ isAuthenticated = true }) => {
-  const role = localStorage.getItem("ROLE");
+  // const role = localStorage.getItem("ROLE");
+  const role = "admin";
 
   return (
     <BrowserRouter>
@@ -78,7 +78,8 @@ const index = ({ isAuthenticated = true }) => {
             }
           />
         )}
-        {role === "mardika" && (
+        {/* {role === "mardika" && ( */}
+        {role === "admin" && (
           <>
             <Route
               path="/mardika/dashboard"
@@ -152,31 +153,33 @@ const index = ({ isAuthenticated = true }) => {
             />
           </>
         )}
-        {role === "dewantara-muda" && (
+        {role === "admin" && (
+          // {role === "dewantara-muda" && (
           <>
-          <Route
-            path="/dewantara-muda/dashboard"
-            element={
-              isAuthenticated ? (
-                <DewantaraMudaDashboard />
-              ) : (
-                <NotFound /> // If isAuthenticated is true, show DewantaraMudaDashboard, else show NotFound
-              )
-            }
-          />
-          <Route
-            path="/dewantara-muda/buat-kelompok"
-            element={
-              isAuthenticated ? (
-                <DewantaraMudaCreateGroup />
-              ) : (
-                <NotFound /> // If isAuthenticated is true, show DewantaraMudaDashboard, else show NotFound
-              )
-            }
-          />
+            <Route
+              path="/dewantara-muda/dashboard"
+              element={
+                isAuthenticated ? (
+                  <DewantaraMudaDashboard />
+                ) : (
+                  <NotFound /> // If isAuthenticated is true, show DewantaraMudaDashboard, else show NotFound
+                )
+              }
+            />
+            <Route
+              path="/dewantara-muda/buat-kelompok"
+              element={
+                isAuthenticated ? (
+                  <DewantaraMudaCreateGroup />
+                ) : (
+                  <NotFound /> // If isAuthenticated is true, show DewantaraMudaDashboard, else show NotFound
+                )
+              }
+            />
           </>
         )}
-        {role === "konselor" && (
+        {role === "admin" && (
+          // {role === "konselor" && (
           <Route
             path="/konselor/dashboard"
             element={
