@@ -1,29 +1,3 @@
-// import React from "react";
-// import { Route } from "react-router-dom";
-// import { Routes } from "react-router-dom";
-// import { BrowserRouter } from "react-router-dom";
-// import LandingPage from "@Pages/LandingPage";
-// import Classroom from "@Pages/LandingPage/Products/Classroom";
-// import Counseling from "@Pages/LandingPage/Products/Counseling";
-// import AdminDashboard from "@Pages/Admin/Dashboard";
-// import NotFound from "@Pages/NotFound";
-
-// const index = ({ isAuthenticated = true, isAdmin = true }) => {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<LandingPage />} />
-//         <Route path="/konseling" element={<Counseling />} />
-//         <Route path="/classroom" element={<Classroom />} />
-//         <Route path="/dashboard" element={<AdminDashboard />} />
-//         <Route path="*" element={<NotFound />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// };
-
-// export default index;
-
 import React from "react";
 import { Route } from "react-router-dom";
 import { Routes } from "react-router-dom";
@@ -48,15 +22,18 @@ import MardikaLearningTracking from "@Pages/Mardika/LearningTracking";
 import MardikaSettings from "@Pages/Mardika/Settings";
 import MardikaFindYourGroup from "@Pages/Mardika/FindYourGroup";
 
+// DEWANTARA MUDA
 import DewantaraMudaDashboard from "@Pages/DewantaraMuda/Dashboard";
 import DewantaraMudaCreateGroup from "@Pages/DewantaraMuda/CreateGroup";
+import DewantaraMudaKelompok from "@Pages/DewantaraMuda/Kelompok";
+import DewantaraMudaKelompokUpdate from "@Pages/DewantaraMuda/Kelompok/hasilPosting";
+import DewantaraMudaKelompokPengumuman from "@Pages/DewantaraMuda/Kelompok/hasilPengumuman";
 
 import CounselorDashboard from "@Pages/Counselor/Dashboard";
 import NotFound from "@Pages/NotFound";
 
 const index = ({ isAuthenticated = true }) => {
-  // const role = localStorage.getItem("ROLE");
-  const role = "admin";
+  const role = localStorage.getItem("ROLE");
 
   return (
     <BrowserRouter>
@@ -78,8 +55,7 @@ const index = ({ isAuthenticated = true }) => {
             }
           />
         )}
-        {/* {role === "mardika" && ( */}
-        {role === "admin" && (
+        {role === "mardika" && (
           <>
             <Route
               path="/mardika/dashboard"
@@ -153,8 +129,7 @@ const index = ({ isAuthenticated = true }) => {
             />
           </>
         )}
-        {role === "admin" && (
-          // {role === "dewantara-muda" && (
+        {role === "dewantara-muda" && (
           <>
             <Route
               path="/dewantara-muda/dashboard"
@@ -176,10 +151,39 @@ const index = ({ isAuthenticated = true }) => {
                 )
               }
             />
+            <Route
+              path="/dewantara-muda/kelompok"
+              element={
+                isAuthenticated ? (
+                  <DewantaraMudaKelompok />
+                ) : (
+                  <NotFound /> // If isAuthenticated is true, show DewantaraMudaDashboard, else show NotFound
+                )
+              }
+            />
+            <Route
+              path="/dewantara-muda/kelompok-update"
+              element={
+                isAuthenticated ? (
+                  <DewantaraMudaKelompokUpdate />
+                ) : (
+                  <NotFound /> // If isAuthenticated is true, show DewantaraMudaDashboard, else show NotFound
+                )
+              }
+            />
+            <Route
+              path="/dewantara-muda/kelompok-pengumuman"
+              element={
+                isAuthenticated ? (
+                  <DewantaraMudaKelompokPengumuman />
+                ) : (
+                  <NotFound /> // If isAuthenticated is true, show DewantaraMudaDashboard, else show NotFound
+                )
+              }
+            />
           </>
         )}
-        {role === "admin" && (
-          // {role === "konselor" && (
+        {role === "konselor" && (
           <Route
             path="/konselor/dashboard"
             element={

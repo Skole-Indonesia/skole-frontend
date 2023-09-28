@@ -109,34 +109,68 @@ const index = () => {
             )}
           </>
         )}
-        <Link
-          to={`/${role}/classroom`}
-          className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
-            pathname === `/${role}/classroom`
-              ? "bg-blue-500 hover:bg-blue-600 text-white"
-              : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() => handleNavbarItemClick("classroom")}
-        >
-          {/* ... icon ... */}
-          <span className="mx-2 text-sm font-medium lg:text-base">
-            Classroom
-          </span>
-        </Link>
-        <Link
-          to={`/${role}/live-class`}
-          className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
-            pathname === `/${role}/live-class`
-              ? "bg-blue-500 hover:bg-blue-600 text-white"
-              : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() => handleNavbarItemClick("live-class")}
-        >
-          {/* ... icon ... */}
-          <span className="mx-2 text-sm font-medium lg:text-base">
-            Live Class
-          </span>
-        </Link>
+        {role === "dewantara-muda" && (
+          <>
+            <Link
+              to={`/${role}/kelompok`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/kelompok`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => handleNavbarItemClick("kelompok")}
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Kelompok
+              </span>
+            </Link>
+            <Link
+              to={`/${role}/tracking-pembelajaran-siswa`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/tracking-pembelajaran-siswa`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() =>
+                handleNavbarItemClick("tracking-pembelajaran-siswa")
+              }
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Tracking Pembelajaran Siswa
+              </span>
+            </Link>
+            <Link
+              to={`/${role}/buat-akun-siswa`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/buat-akun-siswa`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => handleNavbarItemClick("buat-akun-siswa")}
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Buat Akun Siswa
+              </span>
+            </Link>
+            <Link
+              to={`/${role}/daftar-akun-siswa`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/daftar-akun-siswa`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => handleNavbarItemClick("daftar-akun-siswa")}
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Daftar Akun Siswa
+              </span>
+            </Link>
+          </>
+        )}
         <Link
           to={`/${role}/konseling`}
           className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
@@ -149,20 +183,6 @@ const index = () => {
           {/* ... icon ... */}
           <span className="mx-2 text-sm font-medium lg:text-base">
             Konseling
-          </span>
-        </Link>
-        <Link
-          to={`/${role}/tracking-pembelajaran`}
-          className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
-            pathname === `/${role}/tracking-pembelajaran`
-              ? "bg-blue-500 hover:bg-blue-600 text-white"
-              : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() => handleNavbarItemClick("tracking-pembelajaran")}
-        >
-          {/* ... icon ... */}
-          <span className="mx-2 text-sm font-medium lg:text-base">
-            Tracking Pembelajaran
           </span>
         </Link>
         <Link

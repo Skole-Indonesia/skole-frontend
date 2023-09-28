@@ -345,7 +345,7 @@ const Navbar = ({ className }) => {
                       </Link>
                     )}
 
-                    {role === "dewantaramuda" && (
+                    {role == "dewantara-muda" && (
                       <Link
                         to="/dewantara-muda/dashboard"
                         onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
