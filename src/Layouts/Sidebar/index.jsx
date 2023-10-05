@@ -171,34 +171,66 @@ const index = () => {
             </Link>
           </>
         )}
-        <Link
-          to={`/${role}/konseling`}
-          className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
-            pathname === `/${role}/konseling`
-              ? "bg-blue-500 hover:bg-blue-600 text-white"
-              : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() => handleNavbarItemClick("counseling")}
-        >
-          {/* ... icon ... */}
-          <span className="mx-2 text-sm font-medium lg:text-base">
-            Konseling
-          </span>
-        </Link>
-        <Link
-          to={`/${role}/pengaturan`}
-          className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
-            pathname === `/${role}/pengaturan`
-              ? "bg-blue-500 hover:bg-blue-600 text-white"
-              : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
-          }`}
-          onClick={() => handleNavbarItemClick("pengaturan")}
-        >
-          {/* ... icon ... */}
-          <span className="mx-2 text-sm font-medium lg:text-base">
-            Pengaturan
-          </span>
-        </Link>
+        {role === "konselor" && (
+          <>
+            <Link
+              to={`/${role}/jadwal-saya`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/jadwal-saya`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => handleNavbarItemClick("jadwal-saya")}
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Jadwal Saya
+              </span>
+            </Link>
+            <Link
+              to={`/${role}/perjanjian-saya`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/perjanjian-saya`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => handleNavbarItemClick("perjanjian-saya")}
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Perjanjian Saya
+              </span>
+            </Link>
+            <Link
+              to={`/${role}/chat`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/chat`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => handleNavbarItemClick("chat")}
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Chat
+              </span>
+            </Link>
+            <Link
+              to={`/${role}/laporan`}
+              className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
+                pathname === `/${role}/laporan`
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
+              }`}
+              onClick={() => handleNavbarItemClick("laporan")}
+            >
+              {/* ... icon ... */}
+              <span className="mx-2 text-sm font-medium lg:text-base">
+                Laporan
+              </span>
+            </Link>
+          </>
+        )}
         <Link
           to="/logout"
           className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${

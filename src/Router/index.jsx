@@ -29,7 +29,10 @@ import DewantaraMudaKelompok from "@Pages/DewantaraMuda/Kelompok";
 import DewantaraMudaKelompokUpdate from "@Pages/DewantaraMuda/Kelompok/hasilPosting";
 import DewantaraMudaKelompokPengumuman from "@Pages/DewantaraMuda/Kelompok/hasilPengumuman";
 
+// COUNSELOR
 import CounselorDashboard from "@Pages/Counselor/Dashboard";
+import CounselorMyDate from "@Pages/Counselor/MyDate";
+
 import NotFound from "@Pages/NotFound";
 
 const index = ({ isAuthenticated = true }) => {
@@ -183,7 +186,9 @@ const index = ({ isAuthenticated = true }) => {
             />
           </>
         )}
+
         {role === "konselor" && (
+          <>
           <Route
             path="/konselor/dashboard"
             element={
@@ -194,6 +199,17 @@ const index = ({ isAuthenticated = true }) => {
               )
             }
           />
+          <Route
+            path="/konselor/jadwal-saya"
+            element={
+              isAuthenticated ? (
+                <CounselorMyDate />
+              ) : (
+                <NotFound /> // If isAuthenticated is true, show CounselorDashboard, else show NotFound
+              )
+            }
+          />
+          </>
         )}
 
         {/* Route for Not Found */}
