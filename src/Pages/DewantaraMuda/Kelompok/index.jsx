@@ -160,7 +160,13 @@ const index = () => {
             <section className="bg-white">
               <div className="container grid grid-cols-1 gap-10 px-6 py-12 mx-auto lg:grid-cols-3">
                 <div className="col-span-2">
-                  <h1 className="mt-2 text-2xl font-semibold text-gray-800 md:text-3xl">
+                  <Link
+                    to="/dewantara-muda/buat-kelompok"
+                    className="px-3 py-2 text-gray-200 transition-colors duration-300 transform rounded-md lg:mt-0 bg-blue-500 hover:bg-blue-600 hover:text-white"
+                  >
+                    Buat Kelompok
+                  </Link>
+                  <h1 className="mt-8 text-2xl font-semibold text-gray-800 md:text-3xl">
                     Senang Belajar
                   </h1>
                   <p className="mt-3 text-gray-500">

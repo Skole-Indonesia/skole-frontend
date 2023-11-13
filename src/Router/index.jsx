@@ -6,9 +6,21 @@ import { BrowserRouter } from "react-router-dom";
 // NO AUTH
 import LandingPage from "@Pages/LandingPage";
 import Classroom from "@Pages/LandingPage/Products/Classroom";
-// import LiveClass from "@Pages/LandingPage/Products/LiveClass";
 import Counseling from "@Pages/LandingPage/Products/Counseling";
-// import LearningTracking from "@Pages/LandingPage/Products/LearningTracking";
+import LiveClass from "@Pages/LandingPage/Products/LiveClass";
+import ForumDiskusi from "@Pages/LandingPage/Products/ForumDiskusi";
+import RankBoard from "@Pages/LandingPage/Products/RankBoard";
+import Artikel from "@Pages/LandingPage/Artikel";
+import TentangKami from "@Pages/LandingPage/TentangKami";
+import Kontak from "@Pages/LandingPage/Kontak";
+import AuthMasuk from "@Pages/Auth/Masuk";
+import AuthMasukMardika from "@Pages/Auth/Masuk/MasukMardika";
+import AuthMasukDewantaraMuda from "@Pages/Auth/Masuk/MasukDewantaraMuda";
+import AuthMasukKonselor from "@Pages/Auth/Masuk/MasukKonselor";
+import AuthRegister from "@Pages/Auth/Register";
+import AuthRegisterMardika from "@Pages/Auth/Register/RegisterMardika";
+import AuthRegisterDewantaraMuda from "@Pages/Auth/Register/RegisterDewantaraMuda";
+import AuthRegisterKonselor from "@Pages/Auth/Register/RegisterKonselor";
 
 // ADMIN
 import AdminDashboard from "@Pages/Admin/Dashboard";
@@ -44,6 +56,32 @@ const index = ({ isAuthenticated = true }) => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/konseling" element={<Counseling />} />
         <Route path="/classroom" element={<Classroom />} />
+        <Route path="/rank-board" element={<RankBoard />} />
+        <Route path="/live-class" element={<LiveClass />} />
+        <Route path="/forum-diskusi" element={<ForumDiskusi />} />
+        <Route path="/artikel" element={<Artikel />} />
+        <Route path="/tentang-kami" element={<TentangKami />} />
+        <Route path="/kontak" element={<Kontak />} />
+        <Route path="/auth/masuk" element={<AuthMasuk />} />
+        <Route path="/auth/masuk/mardika" element={<AuthMasukMardika />} />
+        <Route
+          path="/auth/masuk/dewantara-muda"
+          element={<AuthMasukDewantaraMuda />}
+        />
+        <Route path="/auth/masuk/konselor" element={<AuthMasukKonselor />} />
+        <Route path="/auth/register" element={<AuthRegister />} />
+        <Route
+          path="/auth/register/mardika"
+          element={<AuthRegisterMardika />}
+        />
+        <Route
+          path="/auth/register/dewantara-muda"
+          element={<AuthRegisterDewantaraMuda />}
+        />
+        <Route
+          path="/auth/register/konselor"
+          element={<AuthRegisterKonselor />}
+        />
 
         {/* Routes for different dashboard based on user role */}
         {role === "admin" && (
@@ -189,26 +227,26 @@ const index = ({ isAuthenticated = true }) => {
 
         {role === "konselor" && (
           <>
-          <Route
-            path="/konselor/dashboard"
-            element={
-              isAuthenticated ? (
-                <CounselorDashboard />
-              ) : (
-                <NotFound /> // If isAuthenticated is true, show CounselorDashboard, else show NotFound
-              )
-            }
-          />
-          <Route
-            path="/konselor/jadwal-saya"
-            element={
-              isAuthenticated ? (
-                <CounselorMyDate />
-              ) : (
-                <NotFound /> // If isAuthenticated is true, show CounselorDashboard, else show NotFound
-              )
-            }
-          />
+            <Route
+              path="/konselor/dashboard"
+              element={
+                isAuthenticated ? (
+                  <CounselorDashboard />
+                ) : (
+                  <NotFound /> // If isAuthenticated is true, show CounselorDashboard, else show NotFound
+                )
+              }
+            />
+            <Route
+              path="/konselor/jadwal-saya"
+              element={
+                isAuthenticated ? (
+                  <CounselorMyDate />
+                ) : (
+                  <NotFound /> // If isAuthenticated is true, show CounselorDashboard, else show NotFound
+                )
+              }
+            />
           </>
         )}
 

@@ -1,15 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "@Assets/Logo/logoWithBadge.svg";
 
 const Navbar = ({ className }) => {
-  const role = localStorage.getItem("ROLE");
-  console.log("TESTING ROLE MELALUI CONSOLE LOG NAVBAR : " + role);
-
+  const [role, setRole] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownMenuOpen, setIsDropdownMenuOpen] = useState(false);
   const [isDropdownProfileOpen, setIsDropdownProfileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Retrieve role from localStorage
+    const storedRole = localStorage.getItem("ROLE");
+    if (storedRole) {
+      setRole(storedRole);
+    }
+  }, []);
+
+  const logOut = () => {
+    // Clear localStorage
+    localStorage.removeItem("ROLE");
+    // Redirect to home page
+    navigate("/");
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -62,7 +77,7 @@ const Navbar = ({ className }) => {
   };
 
   return (
-    <nav className={`${className} bg-blue-500 shadow top-0 w-full`}>
+    <nav className={`${className} bg-blue-500 shadow top-0 w-full z-50`}>
       <div className="container px-6 py-2 mx-auto">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
@@ -195,30 +210,47 @@ const Navbar = ({ className }) => {
                     >
                       Konseling
                     </Link>
+
                     <Link
-                      to="#"
+                      to="/live-class"
                       onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
                       className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
                     >
-                      Produk 3
+                      Live Class
+                    </Link>
+
+                    <Link
+                      to="/forum-diskusi"
+                      onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
+                      className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                    >
+                      Forum Diksusi
+                    </Link>
+
+                    <Link
+                      to="/rank-board"
+                      onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
+                      className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                    >
+                      Rank Board
                     </Link>
                   </div>
                 )}
               </div>
               <Link
-                to="#"
+                to="/artikel"
                 className="px-3 py-2 mx-2 mt-2 text-gray-200 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-600 hover:text-white"
               >
                 Artikel
               </Link>
               <Link
-                to="#"
+                to="/tentang-kami"
                 className="px-3 py-2 mx-2 mt-2 text-gray-200 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-600 hover:text-white"
               >
                 Tentang Kami
               </Link>
               <Link
-                to="#"
+                to="/kontak"
                 className="px-3 py-2 mx-2 mt-2 text-gray-200 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-600 hover:text-white"
               >
                 Kontak
@@ -231,7 +263,7 @@ const Navbar = ({ className }) => {
             } lg:flex lg:items-center lg:mx-8`}
           >
             <div className="flex items-center mt-4 lg:mt-0">
-              <button
+              {/* <button
                 className="hidden text-gray-600 transition-colors duration-300 transform lg:block dark:text-gray-200 hover:text-gray-200 dark:hover:text-gray-400 focus:text-gray-200 dark:focus:text-gray-400 focus:outline-none"
                 aria-label="show notifications"
               >
@@ -249,7 +281,7 @@ const Navbar = ({ className }) => {
                     strokeLinejoin="round"
                   />
                 </svg>
-              </button>
+              </button> */}
 
               <div className="relative group">
                 {isMobile ? (
@@ -275,109 +307,149 @@ const Navbar = ({ className }) => {
                     </svg>
                   </button>
                 ) : (
-                  <button
-                    type="button"
-                    className="px-3 py-2 mx-3 mt-2 text-gray-200 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-600 hover:text-white flex flex-row items-center gap-2"
-                    onMouseEnter={handleMouseEnterProfile}
-                    onMouseLeave={closeDropdown}
-                  >
-                    <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                      <img
-                        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                        className="object-cover w-full h-full"
-                        alt="avatar"
-                      />
-                    </div>
-                    Muhammad Hafidz
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={3}
-                      stroke="currentColor"
-                      className="w-3 h-3"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                      />
-                    </svg>
-                  </button>
-                )}
-                {isDropdownProfileOpen && (
-                  <div
-                    className="relative px-4 md:px-0 md:absolute left-3 mt-0 w-48 bg-white rounded-md shadow-none md:shadow-lg"
-                    onMouseEnter={handleMouseEnterProfile}
-                    onMouseLeave={closeDropdown}
-                  >
-                    {role === "admin" && (
-                      // <Link
-                      //   to="/dashboard"
-                      //   onClick={handleMenuLinkClick}
-                      //   className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
-                      //     pathname === "/dashboard"
-                      //       ? "bg-blue-500 hover:bg-blue-600 text-white"
-                      //       : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
-                      //   }`}
-                      // >
-                      //   {/* ... icon ... */}
-                      //   <span className="mx-2 text-sm font-medium lg:text-base">
-                      //     Dashboard
-                      //   </span>
-                      // </Link>
-                      <Link
-                        to="/admin/dashboard"
-                        onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
-                        className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                  <div className="flex">
+                    {role === "admin" ||
+                    role === "mardika" ||
+                    role === "dewantara-muda" ||
+                    role === "konselor" ? (
+                      <button
+                        type="button"
+                        className="px-3 py-2 mx-3 mt-2 text-gray-200 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-600 hover:text-white flex flex-row items-center gap-2"
+                        onMouseEnter={handleMouseEnterProfile}
+                        onMouseLeave={closeDropdown}
                       >
-                        Dashboard
-                      </Link>
+                        <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                          <img
+                            src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                            className="object-cover w-full h-full"
+                            alt="avatar"
+                          />
+                        </div>
+                        Muhammad Hafidz
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={3}
+                          stroke="currentColor"
+                          className="w-3 h-3"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                          />
+                        </svg>
+                      </button>
+                    ) : (
+                      <div className="flex">
+                        <Link
+                          to="/auth/register"
+                          className="px-3 py-2 mx-2 mt-2 transition-colors duration-300 transform rounded-md lg:mt-0 bg-white text-blue-600 hover:bg-blue-600 hover:text-white"
+                        >
+                          Daftar
+                        </Link>
+                        <Link
+                          to="/auth/masuk"
+                          className="px-3 py-2 mx-2 mt-2 text-gray-200 transition-colors duration-300 transform rounded-md lg:mt-0 hover:bg-blue-600 hover:text-white"
+                        >
+                          Masuk
+                        </Link>
+                      </div>
                     )}
 
-                    {role === "mardika" && (
-                      <Link
-                        to="/mardika/dashboard"
-                        onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
-                        className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                    {isDropdownProfileOpen && (
+                      <div
+                        className="mt-12 relative px-4 md:px-0 md:absolute left-3 w-48 bg-white rounded-md shadow-none md:shadow-lg"
+                        onMouseEnter={handleMouseEnterProfile}
+                        onMouseLeave={closeDropdown}
                       >
-                        Dashboard
-                      </Link>
-                    )}
+                        {role === "admin" && (
+                          <Link
+                            to="/admin/dashboard"
+                            onClick={handleMenuLinkClick}
+                            className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                          >
+                            Dashboard
+                          </Link>
+                        )}
 
-                    {role == "dewantara-muda" && (
-                      <Link
-                        to="/dewantara-muda/dashboard"
-                        onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
-                        className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                      >
-                        Dashboard
-                      </Link>
-                    )}
+                        {role === "mardika" && (
+                          <>
+                            <Link
+                              to="/mardika/dashboard"
+                              onClick={handleMenuLinkClick}
+                              className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Dashboard
+                            </Link>
+                            <Link
+                              to="/mardika/profile"
+                              onClick={handleMenuLinkClick}
+                              className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Profile
+                            </Link>
+                            <button
+                              onClick={logOut}
+                              className="w-full text-start block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Logout
+                            </button>
+                          </>
+                        )}
 
-                    {role === "konselor" && (
-                      <Link
-                        to="/konselor/dashboard"
-                        onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
-                        className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                      >
-                        Dashboard
-                      </Link>
+                        {role === "dewantara-muda" && (
+                          <>
+                            <Link
+                              to="/dewantara-muda/dashboard"
+                              onClick={handleMenuLinkClick}
+                              className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Dashboard
+                            </Link>
+                            <Link
+                              to="/dewantara-muda/profile"
+                              onClick={handleMenuLinkClick}
+                              className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Profile
+                            </Link>
+                            <button
+                              onClick={logOut}
+                              className="w-full text-start block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Logout
+                            </button>
+                          </>
+                        )}
+
+                        {role === "konselor" && (
+                          <>
+                            <Link
+                              to="/konselor/dashboard"
+                              onClick={handleMenuLinkClick}
+                              className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Dashboard
+                            </Link>
+                            <Link
+                              to="/konselor/profile"
+                              onClick={handleMenuLinkClick}
+                              className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Profile
+                            </Link>
+                            <button
+                              onClick={logOut}
+                              className="w-full text-start block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
+                            >
+                              Logout
+                            </button>
+                          </>
+                        )}
+                      </div>
                     )}
-                    <Link
-                      to="/profile"
-                      onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      to="#"
-                      onClick={handleMenuLinkClick} // Menutup dropdown saat link diklik
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-500 hover:text-white"
-                    >
-                      Lagout
-                    </Link>
                   </div>
                 )}
               </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const index = () => {
   const role = localStorage.getItem("ROLE");
@@ -15,6 +15,15 @@ const index = () => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const navigate = useNavigate();
+
+  const logOut = () => {
+    // Clear localStorage
+    localStorage.removeItem("ROLE");
+    // Redirect to home page
+    navigate("/");
   };
 
   return (
@@ -231,18 +240,17 @@ const index = () => {
             </Link>
           </>
         )}
-        <Link
-          to="/logout"
+        <button
+          onClick={logOut}
           className={`flex items-center px-3 py-2 transition-colors duration-300 transform rounded-lg w-full ${
             pathname === "/counseling"
               ? "bg-blue-500 hover:bg-blue-600 text-white"
               : "text-neutral__90 hover:text-gray-700 hover:bg-gray-100"
           }`}
-          onClick={() => handleNavbarItemClick("logout")}
         >
           {/* ... icon ... */}
           <span className="mx-2 text-sm font-medium lg:text-base">Logout</span>
-        </Link>
+        </button>
         {/* ... other Link elements for different navbar items ... */}
       </nav>
     </aside>
